@@ -27,4 +27,4 @@ jobs:
 
       - name: Upload files to S3
         run: |
-          aws s3 cp dags/* s3://${{ env.BUCKET_NAME }}/dags/
+           aws s3 cp dags/ s3://mwaa-160071257600-20240429072058028500000003/dags/ --recursive
