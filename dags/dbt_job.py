@@ -18,7 +18,7 @@ default_args = {
 with DAG(dag_id='dbt', default_args=default_args, schedule_interval='@daily') as dag:
 
   cli_command = BashOperator(
-        task_id="bash_command",
+        task_id="Copy_From_S3",
         bash_command="cp -R /usr/local/airflow/dags/sample_sales /tmp;"
   )
 
@@ -37,7 +37,7 @@ with DAG(dag_id='dbt', default_args=default_args, schedule_interval='@daily') as
   )
 
   cli1_command = BashOperator(
-        task_id="bash1_command",
+        task_id="Pust_to_S3",
         bash_command="ls -ltrR /tmp/sample_sales;\
         aws s3 cp /tmp/sample_sales/target/ s3://mwaa-160071257600-20240429072058028500000003/dags/sample_sales/target/ --recursive --exclude '*' --include '*.json' --debug;"
   )
